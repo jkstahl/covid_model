@@ -31,7 +31,8 @@ df = df.iloc[START_INDEX:, :]
 df2 = df.copy()
 df2 = df2.pivot(index='date', columns='state', values='cases')
 
-#df2 = df2[['Texas', 'Washington', 'Florida']]
+df2 = df2[['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Delaware', 'Florida', 'Georgia', 'Oregon', 'Louisiana',  'Nevada', 'North Carolina', 'Oklahoma', 'South Carolina', 'Texas']]
+#df2 = df2[['Colorado', 'Idaho', 'Illinois', 'Iowa', 'Kentucky', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Missouri', 'Nebraska', 'New Hampshire', 'New Mexico', 'New Jersey', 'New York', 'North Dakota', 'Pennsylvania', 'Rhode Island', 'Vermont', 'Virginia', 'Wisconsin']]
 df2.plot()
 
 df = df2.fillna(0)
@@ -94,6 +95,8 @@ class SIR:
         S, I, R = y
         dSdt = -(b) * S * I / (N - c * t)
         dIdt = (b)* S * I / (N - c * t) - gamma * I
+        #dSdt = -(b) * S * I / (N)
+        #dIdt = (b)* S * I / (N) - gamma * I
         dRdt = gamma * I
         return dSdt, dIdt, dRdt
         
