@@ -60,7 +60,7 @@ class SEIR:
         return dSdt, dEdt, dIdt, dRdt
     
     def fit_model(self, x, y):
-        curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
+        return curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
 
     def calc_sir(self, t,   k, gamma, delta, x0,printit = False):
         '''
@@ -88,7 +88,7 @@ class SIR:
         print(self.TI0)
     
     def fit_model(self, x, y):
-        curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
+        return curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
     
     def deriv (self, y , t, N, b, gamma, c):
         S, I, R = y
