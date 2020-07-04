@@ -18,10 +18,7 @@ ADDITIONAL_ROWS =1
 
 sns.set(rc={'figure.figsize':(15, 7)})
 #df = pd.read_csv(r'C:\Users\neoba\Downloads\time_series_covid19_confirmed_global.csv')
-df = pd.read_csv(r'C:\Users\neoba\Downloads\time_series_covid19_confirmed_global (2).csv')
-df = pd.read_csv(r'C:\Users\neoba\Downloads\time_series_covid19_confirmed_global (3).csv')
-df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states.csv') 
-df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states (3).csv')
+
 df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states (5).csv')
 pop = pd.read_csv(r'C:\Users\neoba\Downloads\State Populations.csv')
 
@@ -61,7 +58,10 @@ class SEIR:
         dIdt = delta * E - gamma * I
         dRdt = gamma * I
         return dSdt, dEdt, dIdt, dRdt
-        
+    
+    def fit_model(self, x, y):
+        curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
+
     def calc_sir(self, t,   k, gamma, delta, x0,printit = False):
         '''
         Need to find R0 since we only have infected + recovered
@@ -86,6 +86,9 @@ class SIR:
         self.TI0 = TI0
         print (self.N)
         print(self.TI0)
+    
+    def fit_model(self, x, y):
+        curve_fit(self.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
     
     def deriv (self, y , t, N, b, gamma, c):
         S, I, R = y
@@ -125,7 +128,7 @@ def get_model(df):
         y = df[country].astype(float).to_numpy()
         
         sir = SIR(float(pops[country]), y[0])
-        popt, pcov = curve_fit(sir.calc_sir, x, y, p0=( 1./10, .1, .1, 1./10), maxfev=10000)
+        popt, pcov = sir.fit_model(x, y)
         print (popt)
         models[country] = popt
 
