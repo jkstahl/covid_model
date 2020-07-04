@@ -24,6 +24,7 @@ df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states.csv')
 df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states (3).csv')
 df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states (5).csv')
 pop = pd.read_csv(r'C:\Users\neoba\Downloads\State Populations.csv')
+
 pops = {p['State']:p['2018 Population'] for st, p in pop.iterrows()}
 print(pops)
 df['date'] = pd.to_datetime(df['date'])
