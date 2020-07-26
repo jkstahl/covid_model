@@ -19,7 +19,7 @@ ADDITIONAL_ROWS =1
 sns.set(rc={'figure.figsize':(15, 7)})
 #df = pd.read_csv(r'C:\Users\neoba\Downloads\time_series_covid19_confirmed_global.csv')
 
-df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states (5).csv')
+df = pd.read_csv(r'C:\Users\neoba\Downloads\us-states.csv')
 pop = pd.read_csv(r'C:\Users\neoba\Downloads\State Populations.csv')
 
 pops = {p['State']:p['2018 Population'] for st, p in pop.iterrows()}
